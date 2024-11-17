@@ -1,3 +1,4 @@
+require("./web.js");
 require("dotenv").config();
 
 const Discord = require("discord.js");
