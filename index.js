@@ -12,7 +12,12 @@ const client = new Discord.Client({
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(process.env.GEMINI);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
+  generationConfig: {
+    maxOutputTokens: 100,
+  },
+});
 
 const history = require("./history.js");
 
