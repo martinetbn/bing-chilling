@@ -36,20 +36,20 @@ client.on("messageCreate", async (msg) => {
       msg.reply("banca pibe me estás matando.");
       return;
     } else {
-      cooldown.add(msg.author.id);
-      setTimeout(() => {
-        cooldown.delete(msg.author.id);
-      }, 15000);
-    }
-    await msg.channel.sendTyping();
-    try {
-      const message = msg.content.replace(`<@!${client.user.id}>`, "").trim();
-      const result = await chat.sendMessage(
-        msg.author.displayName + ": " + message
-      );
-      await msg.reply(result.response.text());
-    } catch (err) {
-      console.log(err);
+      try {
+        cooldown.add(msg.author.id);
+        await msg.channel.sendTyping();
+        const message = msg.content.replace(`<@!${client.user.id}>`, "").trim();
+        const result = await chat.sendMessage(
+          msg.author.displayName + ": " + message
+        );
+        await msg.reply(result.response.text());
+        setTimeout(() => {
+          cooldown.delete(msg.author.id);
+        }, 15000);
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 });
