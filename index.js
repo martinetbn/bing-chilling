@@ -39,7 +39,7 @@ client.on("messageCreate", async (msg) => {
       cooldown.add(msg.author.id);
       setTimeout(() => {
         cooldown.delete(msg.author.id);
-      }, 15000);
+      }, 5000);
     }
     await msg.channel.sendTyping();
     try {
